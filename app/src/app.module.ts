@@ -16,8 +16,9 @@ import {
  * STYLES
  */
 require("normalize.css");
-require("../../node_modules/font-awesome/css/font-awesome.min.css");
-
+//require("../../node_modules/font-awesome/css/font-awesome.min.css");
+//require("font-awesome-webpack");
+require('style!css!less!font-awesome-webpack/font-awesome-styles.loader!font-awesome-webpack/font-awesome.config.js');
 // new docs at http://v4-alpha.getbootstrap.com/layout/overview/
 require("../../node_modules/bootstrap/dist/css/bootstrap-grid.css");
 
