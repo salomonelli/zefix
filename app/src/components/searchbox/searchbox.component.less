@@ -1,0 +1,108 @@
+@padding: 3%;
+searchbox {
+    width: 100%;
+    display: block;
+    position: relative;
+    box-shadow: 2px 2px 1px rgba(0, 0, 0, 0.1), -2px 2px 3px rgba(0, 0, 0, 0.1);
+    div.form {
+        width: 100%;
+        display: flex;
+        background: white;
+        input {
+            flex: 1;
+            outline: none;
+            padding: 8px @padding;
+            border: none;
+            font-size: 20px;
+            height: 33px;
+        }
+        div.options{
+          flex: 0;
+          cursor: pointer;
+          padding: 8px @padding;
+          width: 50px;
+          height: 33px;
+          text-align: center;
+          //background: #BDBDBD;
+          color: #757575;
+          i {
+              padding: 0 5px;
+              font-size: 25px;
+              margin-top: 3px;
+          }
+        }
+        div.icon {
+            flex: 0;
+            cursor: pointer;
+            padding: 8px @padding;
+            width: 50px;
+            height: 33px;
+            text-align: center;
+            background: rgb(0, 137, 123);
+            color: white;
+            i {
+                padding: 0 5px;
+                font-size: 25px;
+                margin-top: 3px;
+            }
+            md-spinner {
+                height: 33px;
+                width: 33px;
+                padding: 0;
+                border: white;
+                path{
+                  stroke: white;
+                }
+            }
+        }
+    }
+    div.suggests {
+        border-top: 1px solid #9E9E9E;
+        background: white;
+        width: 100%;
+        margin: auto;
+        position: absolute;
+        box-shadow: 2px 2px 1px rgba(0, 0, 0, 0.1), -2px 2px 3px rgba(0, 0, 0, 0.1);
+        div.suggest {
+            cursor: pointer;
+            font-weight: lighter;
+            border-bottom: 1px solid #E0E0E0;
+            display: flex;
+            padding: 10px 0;
+            width: 100%;
+            i {
+                font-size: 25px;
+                color: #BDBDBD;
+                margin-top: 2px;
+                &:first-child {
+                    margin-left: @padding;
+                }
+                &:last-child {
+                    margin-right: @padding;
+                }
+            }
+            div.display {
+                flex: 1;
+                padding: 0 3%;
+                color: #666;
+                margin-top: 2.5px;
+                font-size: 20px;
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+            }
+            &.selected {
+                background-color: #EEEEEE;
+            }
+            &:hover {
+                background-color: #F5F5F5;
+            }
+            &:hover .display {
+                text-decoration: underline;
+            }
+            &:last-child {
+                border-bottom: none;
+            }
+        }
+    }
+}

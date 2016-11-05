@@ -1,0 +1,37 @@
+<div class="form">
+
+    <input
+        #input
+        type="text"
+        [autofocus]="this.autofocus"
+        placeholder="Search"
+        (keyup)="touched($event)"
+        (keydown)="touched($event)"
+        (focus)="focus()"
+        (blur)="unfocus()"
+        (change)="touched($event)"
+        [(ngModel)]="query"/>
+    <div class="options">
+        <i class="fa fa-caret-down" aria-hidden="true"></i>
+    </div>
+    <div class="icon">
+        <md-spinner
+            *ngIf="focused && !suggestsLoaded"
+            class="app-spinner"></md-spinner>
+        <i
+            *ngIf="suggestsLoaded || !focused"
+            class="fa fa-search"
+            aria-hidden="true"></i>
+    </div>
+</div>
+<div class="suggests" *ngIf="focused && suggestsLoaded">
+    <div
+        *ngFor="let suggest of suggests"
+        (mousedown)="submit(suggest)"
+        class="suggest"
+        [class.selected]="suggest === selectedSuggest">
+        <i class="icon type fa fa-{{suggest.typeLogo()}}"></i>
+        <div class="display">{{suggest.display()}}</div>
+        <i class="icon source fa fa-{{suggest.sourceLogo()}}"></i>
+    </div>
+</div>

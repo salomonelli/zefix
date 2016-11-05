@@ -1,0 +1,11 @@
+<div class="row">
+    <div id="left-side" class="side col-md-6" #measureWidth>
+        <searchbox [autofocus]="false" [query]="this.query"></searchbox>
+        <searchresults
+        [hidden]="isSmallDisplay"
+        [query]="this.query"></searchresults>
+    </div>
+    <div id="right-side" class="side col-md-6">
+        <searchmodules [query]="this.query"></searchmodules>
+    </div>
+</div>

@@ -1,0 +1,29 @@
+<md-card id="searchresults">
+    <div *ngIf="!resultsLoaded" class="loader">
+        <md-spinner class="app-spinner"></md-spinner>
+    </div>
+    <div *ngFor="let result of results" class="result" [class.selected]="result === selectedResult"
+        (mouseup)="clickResult(result, $event)">
+        <div class="title">{{result.title}}</div>
+        <div class="url">
+            <div class="url-icon">
+                <img src="{{result.urlIcon}}" *ngIf="result.urlIcon" />
+            </div>
+            <div class="url-text">
+                {{result.url}}
+            </div>
+        </div>
+        <div class="description">{{result.description}}</div>
+        <div class="tools">
+            <div class="tool">
+                <i class="fa fa-search" title="search on this site only"></i>
+                <i class="fa fa-university" (click)="tool_archive(result)"
+                    title="archive.org"></i>
+                <i class="fa fa-user-secret" (click)="tool_proxy(result)"
+                    title="visit via proxy"></i>
+                <i class="fa fa-star" title="save to favorites"></i>
+            </div>
+
+        </div>
+    </div>
+</md-card>

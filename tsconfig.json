@@ -1,0 +1,30 @@
+{
+
+  "compileOnSave": false,
+  "buildOnSave": false,
+    "compilerOptions": {
+        "target": "es5",
+        "module": "commonjs",
+        "moduleResolution": "node",
+        "sourceMap": true,
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "removeComments": false,
+        "noImplicitAny": false,
+        "types": [
+            "core-js",
+            "requirejs"
+        ]
+    },
+    "includes": [
+        "app/**/*.ts"
+    ],
+    "filesGlob": [
+        "**/*.ts",
+        "!node_modules/**"
+    ],
+    "atom": {
+      "rewriteTsconfig": false,
+      "formatOnSave": false
+    }
+}

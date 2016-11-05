@@ -1,0 +1,52 @@
+<div class="measure-width" #measureWidth></div>
+
+<div *ngIf="!searchModulesLoaded">
+    <md-spinner class="app-spinner"></md-spinner>
+</div>
+
+<div
+    class="tab-group"
+    *ngIf="searchModulesLoaded"
+    #tabGroup>
+    <div
+        class="tab search-module"
+        *ngFor="let searchModule of shownModules"
+        [ngStyle]="{'background-color': searchModule.color}"
+        [class.selected]="searchModule === selectedSearchModule"
+        (click)="selectModule(searchModule)"
+        #lastTab>
+        <div class="icon" #lastIcon>
+            <img src="{{searchModule.iconURL}}"/>
+        </div>
+
+        <div class="title" [class.hidden]="!showTabTitle">
+            <span>{{searchModule.title}}</span>
+        </div>
+    </div>
+</div>
+
+<md-card
+    class="content"
+    *ngFor="let searchModule of searchModules"
+    [class.show]="searchModule === selectedSearchModule"
+    [ngStyle]="{'border-color': searchModule.color}">
+    <div *ngIf="!searchModule.content">
+        <md-spinner class="app-spinner"></md-spinner>
+    </div>
+    <div *ngIf="searchModule.content">
+        <!-- TODO check sandbox-vars -->
+        <iframe
+            [srcdoc]="searchModule.content"
+            sandbox="allow-scripts"
+            id="{{searchModule.id()}}"
+            scrolling="no"
+            marginheight="0"
+            marginwidth="0"
+            frameborder="1"
+            [style.height.px]=searchModule.height>
+            No iframes allowed in your browser
+        </iframe>
+    </div>
+</md-card>
+
+<div class="c"></div>

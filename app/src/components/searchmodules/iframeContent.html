@@ -1,0 +1,75 @@
+<html>
+
+<head>
+
+    <script>
+        window.secret = '|secret|';
+
+        /**
+         * send postMessage to the parent
+         * @param  {string} type
+         * @param  {*} data
+         */
+        window.sendToParent = function(type, data) {
+            var sendData = {
+                secret: window.secret,
+                type: type,
+                data: data
+            };
+            window.parent.postMessage(
+                sendData,
+                '*'
+            );
+
+        };
+
+        function sthInFocus() {
+            var focusedEls = document.querySelector(
+                ':focus');
+            if (focusedEls) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        window.updateHeight = function() {
+            var newHeight = window.innerHeight;
+            window.sendToParent('SET_HEIGHT', newHeight);
+        }
+        window.scrollTop = function() {
+            window.sendToParent('SCROLL_TOP', {});
+        }
+
+        //autorun events
+        document.addEventListener("DOMContentLoaded",
+            function(event) {
+                window.updateHeight();
+            });
+        window.addEventListener("load", function(event) {
+            window.updateHeight();
+            window.sendToParent('LOADED', {});
+        });
+
+        document.addEventListener("keydown", function(event) {
+            if (!sthInFocus()) {
+                window.sendToParent(
+                    'DOCUMENT_KEYDOWN', {
+                        code: event.code,
+                        keyCode: event.keyCode,
+                        key: event.key,
+                        ctrlKey: event.ctrlKey
+                    });
+            }
+        });
+    </script>
+
+</head>
+
+<body>
+
+    |content|
+
+</body>
+
+</html>
