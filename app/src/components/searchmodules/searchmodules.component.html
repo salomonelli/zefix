@@ -33,7 +33,10 @@
     <div *ngIf="!searchModule.content">
         <md-spinner class="app-spinner"></md-spinner>
     </div>
-    <div *ngIf="searchModule.content">
+    <div *ngIf="searchModule.useNgContent">
+        <ng-content></ng-content>
+    </div>
+    <div *ngIf="searchModule.content && !searchModule.useNgContent">
         <!-- TODO check sandbox-vars -->
         <iframe
             [srcdoc]="searchModule.content"

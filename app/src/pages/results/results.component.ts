@@ -1,10 +1,10 @@
 import { Component, Input, OnInit, HostListener, ViewChildren } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 
-import { Result } from '../../logic/result.ts';
-import { ResultService } from '../../service/result.service.ts';
+import { Result } from '../../logic/result';
+import { ResultService } from '../../service/result.service';
 import { SearchModule } from '../../logic/search-module';
-import { SearchModuleService } from '../../service/search-module.service.ts';
+import { SearchModuleService } from '../../service/search-module.service';
 
 @Component({
     selector: 'results',
@@ -42,10 +42,11 @@ export class ResultsComponent implements OnInit {
                 .then((results) => {
                     this.results = results;
                     this.resultsLoaded = true;
+                    this.detectSmallDisplay();
                     return this.searchModuleService.getSearchModulesSlowly(this.query);
                 })
                 // load searchModules
-                .then((searchModules) => {
+                .then(searchModules => {
                     this.searchModules = searchModules;
                     this.searchModulesLoaded = true;
                     this.selectedSearchModule = searchModules[0];
@@ -83,15 +84,11 @@ export class ResultsComponent implements OnInit {
 
     isSmallDisplay: boolean = false;
     @HostListener('window:resize', ['$event'])
-    showSearchResults() {
+    detectSmallDisplay() {
         const width = this.measureWidth.first.nativeElement.offsetWidth;
         let windowWidth = window.innerWidth;
-        if ((width-50) > windowWidth / 2){
-          this.isSmallDisplay = true;
-        }
-        else if (this.isSmallDisplay){
-          this.isSmallDisplay = false;
-        }
+        if ((width-50) > windowWidth / 2) this.isSmallDisplay = true;
+        else this.isSmallDisplay = false;
     }
 
 }

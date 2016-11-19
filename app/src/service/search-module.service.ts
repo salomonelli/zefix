@@ -15,7 +15,8 @@ export class SearchModuleService {
                 'search',
                 'anyprovider',
                 'blabla',
-                '#006C61'
+                '#006C61',
+                true
             ),
             new SearchModule(
                 'youtube',

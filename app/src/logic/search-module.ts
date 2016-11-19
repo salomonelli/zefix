@@ -10,17 +10,20 @@ export class SearchModule {
     public secret: string;
     public height: number = 100;
     public smallDisplayOnly: boolean = false;
+    public useNgContent: boolean;
 
     constructor(
         title: string,
         provider: string,
         iconURL: string,
-        color: string
+        color: string,
+        useNgContent: boolean = false
     ) {
         this.title = title;
         this.provider = provider;
         this.iconURL = iconURL;
         this.color = color;
+        this.useNgContent = useNgContent
     }
 
 

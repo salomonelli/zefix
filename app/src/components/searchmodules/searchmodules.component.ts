@@ -3,8 +3,8 @@ import { DomSanitizer } from '@angular/platform-browser';
 
 import { ResultService } from '../../service/result.service';
 import { SearchModule } from '../../logic/search-module';
-import { SearchModuleService } from '../../service/search-module.service.ts';
-import { SearchResultsComponent} from '../searchresults/searchresults.component.ts';
+import { SearchModuleService } from '../../service/search-module.service';
+import { SearchResultsComponent} from '../searchresults/searchresults.component';
 
 import { Util } from '../../util';
 
@@ -42,6 +42,7 @@ export class SearchModulesComponent implements OnInit {
             .then((modules) => {
                 modules = Util.addSecrets(modules);
                 this.searchModules = modules;
+                console.dir(modules);
                 this.searchModulesLoaded = true;
                 this.selectedSearchModule = this.searchModules[0];
                 this.loadSelectedModule();
