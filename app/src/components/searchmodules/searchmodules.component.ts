@@ -42,7 +42,6 @@ export class SearchModulesComponent implements OnInit {
             .then((modules) => {
                 modules = Util.addSecrets(modules);
                 this.searchModules = modules;
-                console.dir(modules);
                 this.searchModulesLoaded = true;
                 this.selectedSearchModule = this.searchModules[0];
                 this.loadSelectedModule();
@@ -54,7 +53,7 @@ export class SearchModulesComponent implements OnInit {
                  * is fired after the onInint-promise and after the html-rendering
                  * @link https://angular.io/docs/ts/latest/guide/lifecycle-hooks.html
                  */
-                setTimeout(() => { this.toggleEllipsis(null); }, 0);
+                setTimeout(() => { this.toggleEllipsis(); }, 0);
             });
     }
 
@@ -159,19 +158,22 @@ export class SearchModulesComponent implements OnInit {
         }
     }
 
+    
+    @HostListener('window:resize', ['$event'])
+    onWindowResize(event){
+        this.toggleEllipsis();
+        this.showSearchResults();
+    }
+
 
     showTabTitle: boolean = true;
-    @HostListener('window:resize', ['$event'])
-    toggleEllipsis(event) {
+    toggleEllipsis() {
         try {
             let iconWidth = this.lastIcon.first.nativeElement.offsetWidth;
             let minSpace = iconWidth + 20;
             let tabWidth = this.lastTab.first.nativeElement.clientWidth;
-            if (tabWidth - minSpace <= iconWidth) {
-                this.showTabTitle = false;
-            } else {
-                this.showTabTitle = true;
-            }
+            if (tabWidth - minSpace <= iconWidth) this.showTabTitle = false;
+            else this.showTabTitle = true;
         } catch (e) {
             // console.warn('searchmodules.toggleEllipsis called to early');
             // console.dir(e);
@@ -179,7 +181,6 @@ export class SearchModulesComponent implements OnInit {
     }
 
     isSmallDisplay: boolean = false;
-    @HostListener('window:resize', ['$event'])
     showSearchResults() {
         const width = this.measureWidth.first.nativeElement.offsetWidth;
         let windowWidth = window.innerWidth;

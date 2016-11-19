@@ -13,7 +13,7 @@ export class ResultService {
             gen.push(new Result(
                 'url',
                 searchTerm + ' homo sapiens ' + t,
-                'Berlin Zum Anhören bitte klicken! [bɛɐ̯ˈliːn] ist die Bundeshauptstadt der Bundesrepublik Deutschland und zugleich eines ihrer Länder. Die Stadt Berlin ist ... ',
+                'Berlin Zum Anhören bitte klicken! [bɛɐ̯ˈliːn] ist die Bundeshauptstadt der Bundesrepublik Deutschland und zugleich eines ihrer Länder. Die Stadt Berlin ist',
                 'http://www.google.com/asdflkadfsjasdf'
             ));
         }
